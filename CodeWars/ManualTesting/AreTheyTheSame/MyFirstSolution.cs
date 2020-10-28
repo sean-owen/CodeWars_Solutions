@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ManualTesting
+namespace ManualTesting.TwoSum
 {
-    public class Kata
+    public class AreTheySame
     {
         // Got there in the end! Had to peak tests that were being run though.
+
+        // Test 1a in Sample tests was the problem. From the description I did not comprehend that the values
+        // in array 'a' squared had to have a unique match in array 'b'
+
+        // This meant if a[0] * a[0] == b[0] was true
+        // then a[0] * a[0] could not match to any other member of array b!
+
         public static bool comp(int[] a, int[] b)
         {
             bool output = true;
@@ -47,6 +54,5 @@ namespace ManualTesting
 
             return output;
         }
-
     }
 }
