@@ -1,7 +1,7 @@
-﻿using ManualTesting.TwoSum;
+﻿using KataSolutions.TwoSum;
 using System;
 
-namespace ManualTesting
+namespace KataSolutions
 {
     class Program
     {

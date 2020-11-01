@@ -1,8 +1,9 @@
-﻿using NUnit.Framework;
+﻿using KataSolutions.TwoSum;
+using NUnit.Framework;
 using System;
 using System.Linq;
 
-namespace ManualTesting.TwoSum
+namespace UnitTests
 {
     [TestFixture]
     public class TwoSumTests

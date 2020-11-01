@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManualTesting", "ManualTesting\ManualTesting.csproj", "{44645C69-7836-445B-9DEA-39B5E3C12D8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KataSolutions", "ManualTesting\KataSolutions.csproj", "{44645C69-7836-445B-9DEA-39B5E3C12D8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{670B99CE-00C5-474F-9FCB-97ED2C9E323F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{670B99CE-00C5-474F-9FCB-97ED2C9E323F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

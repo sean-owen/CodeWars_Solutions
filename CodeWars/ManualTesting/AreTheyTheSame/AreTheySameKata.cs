@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ManualTesting.TwoSum
+namespace KataSolutions.TwoSum
 {
-    public class AreTheySame
+    public class AreTheySameKata
     {
         // Got there in the end! Had to peak tests that were being run though.
 

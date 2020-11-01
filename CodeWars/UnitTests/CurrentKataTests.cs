@@ -1,4 +1,4 @@
-using ManualTesting;
+using KataSolutions;
 using NUnit.Framework;
 using System.Linq;
 
