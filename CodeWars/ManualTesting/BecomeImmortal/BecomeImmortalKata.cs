@@ -23,14 +23,32 @@ namespace KataSolutions.BecomeImmortal
         public static long ElderAge(long n, long m, long loss, long timeLimit)
         {
             long eldersTime = 0;
+            long xor = 0;
+            long largerAxis = n > m ? n : m;
+            long smallerAxis = n > m ? m : n;
 
-            //for (int i = 0; i < n; i++)
+            //for (long i = loss+1; i < n; i++)
             //{
-            //    for (int j = 0; j < m; j++)
+            //    for (long j = 0; j < m; j++)
             //    {
-            //        long xor = i ^ j;
+            //        xor = i ^ j;
             //        if (xor > loss)
             //        {
+
+            //            eldersTime += xor - loss;
+            //            //eldersTime = AddTimeToElder(eldersTime, timeLimit, (xor - loss));
+            //        }
+            //    }
+            //}
+
+            //for (long i = 0; i < loss+1; i++)
+            //{
+            //    for (long j = loss+1; j < m; j++)
+            //    {
+            //        xor = i ^ j;
+            //        if (xor > loss)
+            //        {
+
             //            eldersTime += xor - loss;
             //            //eldersTime = AddTimeToElder(eldersTime, timeLimit, (xor - loss));
             //        }
@@ -38,54 +56,107 @@ namespace KataSolutions.BecomeImmortal
             //}
 
 
-            long largerAxis = n > m ? n : m;
-            long smallerAxis = n > m ? m : n;
-            long Task1EldersTime = 0;
+            //////////////////////////////////////////////////////////////////////////////////////////////////////// end naive soln
 
-            long xor;
+            // calculate every other line (pairs)
+            // reduce data set based on smaller than loss
 
-            BigInteger numElements = BigInteger.Multiply(BigInteger.Parse(n.ToString()),
-                                     BigInteger.Parse(m.ToString()));
-            var qwe = 0;
-            for (int i = 0; i < smallerAxis; i++)
+
+
+
+
+
+            //long Task1EldersTime = 0;
+
+            //for (long x = 0; x < smallerAxis; x++)
+            //{
+            //    long y = x;
+            //    while (y < smallerAxis)
+            //    {
+            //        xor = x ^ y;
+            //        if (xor > loss)
+            //        {
+            //            //eldersTime += xor - loss;
+            //            Task1EldersTime = AddTimeToElder(Task1EldersTime, timeLimit, (long)(xor - loss));
+            //        }
+            //        y++;
+            //    }
+
+            //}
+            //Task1EldersTime = AddTimeToElder(Task1EldersTime, timeLimit, Task1EldersTime);
+
+
+            //for (long i = smallerAxis; i < largerAxis; i++)
+            //{
+            //    for (long j = 0; j < smallerAxis; j++)
+            //    {
+            //        xor = i ^ j;
+            //        if (xor > loss)
+            //        {
+            //            //eldersTime += xor - loss;
+            //            eldersTime = AddTimeToElder(eldersTime, timeLimit, (long)(xor - loss));
+
+            //        }
+            //    }
+            //}
+
+            ////eldersTime *= 2;            
+
+
+            //eldersTime = AddTimeToElder(eldersTime, timeLimit, Task1EldersTime);
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// end second pass soln
+            long y;
+            
+
+            // if row is even and row+1 < smallerAxis
+
+            // if even number of columns
+            // row + 1 = current row summations
+
+            // if odd number of columns
+            // row + 1 = current row summation + 1
+
+
+            y = 0;
+            long rowStart = loss + 1;
+            while (y < smallerAxis)
             {
-                qwe = i;
-            }
-
-            for (long i = smallerAxis; i < largerAxis; i++)
-            {
-                for (int j = 0; j < smallerAxis; j++)
+                if (y == rowStart)
                 {
-                    xor = i ^ j;
+                    rowStart += loss + 1;
+                }
+
+                for (long x = rowStart; x < smallerAxis; x++)
+                {
+                    xor = x ^ y;
+                    var test = xor - loss;
                     if (xor > loss)
                     {
                         //eldersTime += xor - loss;
-                        eldersTime = AddTimeToElder(eldersTime, timeLimit, (xor - loss));
+                        eldersTime = AddTimeToElder(eldersTime, timeLimit, (long)(xor - loss));
+                    }
+                }
+                
+                y++;
+            }
+            eldersTime *= 2;
+
+
+
+            for (long x = smallerAxis; x < largerAxis; x++)
+            {
+                for (y = 0; y < smallerAxis; y++)
+                {
+                    xor = x ^ y;
+                    if (xor > loss)
+                    {
+                        //eldersTime += xor - loss;
+                        eldersTime = AddTimeToElder(eldersTime, timeLimit, (long)(xor - loss));
 
                     }
                 }
             }
-       
-            for (int i = 0; i < smallerAxis; i++)
-            {
-                int j = i;
-                while (j < smallerAxis)
-                {
-                    xor = i ^ j;
-                    if (xor > loss)
-                    {
-                        //eldersTime += xor - loss;
-                        Task1EldersTime = AddTimeToElder(Task1EldersTime, timeLimit, (xor - loss));
-                    }
-                    j++;
-                }
-
-            }
-            Task1EldersTime = AddTimeToElder(Task1EldersTime, timeLimit, Task1EldersTime);
-            //eldersTime *= 2;            
-
-
-            eldersTime = AddTimeToElder(eldersTime, timeLimit, Task1EldersTime);
 
 
 
@@ -93,6 +164,16 @@ namespace KataSolutions.BecomeImmortal
             return eldersTime; // do it!
 
         }
+
+
+
+
+
+
+
+
+
+
 
 
         private static long AddTimeToElder(long eldersTime, long timeLimit, long timeToAdd)
