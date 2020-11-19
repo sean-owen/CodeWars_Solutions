@@ -107,7 +107,7 @@ namespace KataSolutions.BecomeImmortal
 
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// end second pass soln
             long y;
-            
+
 
             // if row is even and row+1 < smallerAxis
 
@@ -118,50 +118,102 @@ namespace KataSolutions.BecomeImmortal
             // row + 1 = current row summation + 1
 
 
-            y = 0;
-            long rowStart = loss + 1;
-            while (y < smallerAxis)
+
+            // each line is an arithmetic series where
+            // sum = [number of terms * (first term + last term)] / 2
+            if ((n % 2 != 0) && (m % 2 != 0))
             {
-                if (y == rowStart)
-                {
-                    rowStart += loss + 1;
-                }
+                BigInteger nBig = BigInteger.Parse(n.ToString());
+                BigInteger mBig = BigInteger.Parse(m.ToString());
 
-                for (long x = rowStart; x < smallerAxis; x++)
-                {
-                    xor = x ^ y;
-                    var test = xor - loss;
-                    if (xor > loss)
-                    {
-                        //eldersTime += xor - loss;
-                        eldersTime = AddTimeToElder(eldersTime, timeLimit, (long)(xor - loss));
-                    }
-                }
-                
-                y++;
+                BigInteger numTerms = n - (loss + 1);
+
+
+
+
+                BigInteger arithmeticSeriesSum = (numTerms * (1 + numTerms)) / 2;
+
+
+                BigInteger testTime = m * arithmeticSeriesSum;
+
+
+                var additionalSum = ((m - 1) * (1 + (m - 1))) / 2;
+
+                testTime += additionalSum;
+
+                testTime = testTime % (timeLimit);
+
+                return (long)testTime;
             }
-            eldersTime *= 2;
-
-
-
-            for (long x = smallerAxis; x < largerAxis; x++)
+            else
             {
-                for (y = 0; y < smallerAxis; y++)
-                {
-                    xor = x ^ y;
-                    if (xor > loss)
-                    {
-                        //eldersTime += xor - loss;
-                        eldersTime = AddTimeToElder(eldersTime, timeLimit, (long)(xor - loss));
+                BigInteger nBig = BigInteger.Parse(n.ToString());
+                BigInteger mBig = BigInteger.Parse(m.ToString());
 
-                    }
-                }
+                BigInteger numTerms = n - (loss + 1);
+
+                BigInteger arithmeticSeriesSum = (numTerms * (1 + numTerms)) / 2;
+
+                BigInteger testTime = m * arithmeticSeriesSum;
+                testTime = testTime % (timeLimit);
+
+                return (long)testTime;
             }
 
+            //long numTerms = n - (loss + 1);
+
+            //long arithmeticSeriesSum = (numTerms * (1 + numTerms)) / 2;
+
+            //eldersTime = m * arithmeticSeriesSum;
+
+            //eldersTime = eldersTime % (timeLimit);
 
 
-            eldersTime = eldersTime % (timeLimit);
-            return eldersTime; // do it!
+            //y = 0;
+            //long rowStart = loss + 1;
+            //while (y < smallerAxis)
+            //{
+            //    if (y == rowStart)
+            //    {
+            //        rowStart += loss + 1;
+            //    }
+
+
+            //    for (long x = rowStart; x < smallerAxis; x++)
+            //    {
+            //        xor = x ^ y;
+            //        var test = xor - loss;
+            //        if (xor > loss)
+            //        {
+            //            //eldersTime += xor - loss;
+            //            eldersTime = AddTimeToElder(eldersTime, timeLimit, (long)(xor - loss));
+            //        }
+            //    }
+
+            //    y++;
+            //}
+            //eldersTime *= 2;
+
+
+
+            //for (long x = smallerAxis; x < largerAxis; x++)
+            //{
+            //    for (y = 0; y < smallerAxis; y++)
+            //    {
+            //        xor = x ^ y;
+            //        if (xor > loss)
+            //        {
+            //            //eldersTime += xor - loss;
+            //            eldersTime = AddTimeToElder(eldersTime, timeLimit, (long)(xor - loss));
+
+            //        }
+            //    }
+            //}
+
+
+
+            //eldersTime = eldersTime % (timeLimit);
+            //return eldersTime; // do it!
 
         }
 
