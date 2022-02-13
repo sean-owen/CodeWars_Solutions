@@ -8,7 +8,7 @@ namespace UnitTests
 	class BecomeImmortalTests
     {
 		[Test]
-		public void example()
+		public void Example()
 		{
             //Assert.AreEqual((long)5, BecomeImmortalKata.ElderAge(8, 5, 1, 100));
             //Assert.AreEqual((long)224, BecomeImmortalKata.ElderAge(8, 8, 0, 100007));
